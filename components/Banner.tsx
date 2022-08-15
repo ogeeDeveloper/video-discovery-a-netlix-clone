@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { MdPlayArrow } from "react-icons/md";
 
 interface Props {
     // any props that come into the component
@@ -26,6 +27,7 @@ const Banner: React.FunctionComponent<Props> = (props) => {
                 <h3 className="text-lg outline-subtitle lg:text-2xl">{subtitle}</h3>
                 <div className="flex flex-row w-full">
                     <button className="flex items-center justify-center px-5 py-2 mt-5 bg-white10 w-32 rounded-lg" onClick={handleOnPlay}>
+                        <MdPlayArrow className="w-[32px] h-[32px] text-black20"/>
                         <span className="font-[600] text-lg pl-1 text-center text-gray40 lg:text-xl">Play</span>
                     </button>
                 </div>
