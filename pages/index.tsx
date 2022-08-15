@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Banner from '../components/Banner'
+import Navbar from '../components/Navbar'
 
 const Home: NextPage = () => {
   return (
@@ -9,7 +10,7 @@ const Home: NextPage = () => {
         <title>Video Discovery app</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+      <Navbar username="ogeedev" />
       <Banner title="Avatar" subtitle="The last air bender" imgURL="/image/avatar.jpg" />
     </div>
   )
