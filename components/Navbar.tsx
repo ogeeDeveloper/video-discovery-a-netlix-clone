@@ -1,6 +1,6 @@
 import {useRouter} from "next/router"
 import Link from "next/link"
-import React from "react"
+import React, {useState} from "react"
 
 interface Props {
     // any props that come into the component
@@ -9,6 +9,7 @@ interface Props {
 
 const Navbar: React.FunctionComponent<Props> = ({username}) => {
     const router=useRouter()
+    const [showDropdown, setShowDropdown] = useState(false)
 
     const handleOnClickHome = (e:React.SyntheticEvent) => {
         e.preventDefault()
@@ -18,6 +19,10 @@ const Navbar: React.FunctionComponent<Props> = ({username}) => {
     const handleClickMyList = (e:React.SyntheticEvent) => {
         e.preventDefault()
         router.push('/browse/my-list')
+    }
+
+    const handleShowDropdown = () => {
+        setShowDropdown(!showDropdown)
     }
   return (
     <div className="text-white10 fixed top-0 w-full z-50">
@@ -36,21 +41,23 @@ const Navbar: React.FunctionComponent<Props> = ({username}) => {
         {/* Drop Down with username */}
         <nav className="flex items-start ml-auto">
             <div>
-                <button className="flex items-center overflow-hidden text-white">
+                <button className="flex items-center overflow-hidden text-white" onClick={handleShowDropdown}>
                     <p className="text-base">{username}</p>
                     {/* Expand more icons */}
                 </button>
-                <div className="absolute ml-auto mt-2 py-2 bg-black50 border text-white rounded-lg border-blue shadow">
-                    <div>
-                        <Link href="/login">
-                            <a className="transition duration-200 block px-1 rounded-sm cursor-pointer hover:no-underline">Sign Out</a>
-                        </Link>
-                        <div className="py-2"></div>
+                {showDropdown && (
+                    <div className="absolute ml-auto mt-2 py-2 bg-black50 border text-white rounded-lg border-blue shadow">
+                        <div>
+                            <Link href="/login">
+                                <a className="transition duration-200 block px-1 rounded-sm cursor-pointer hover:no-underline">Sign Out</a>
+                            </Link>
+                            <div className="py-2"></div>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </nav>
-        </div>
+    </div>
     </div>
   )
 }

@@ -10,7 +10,7 @@ const Home: NextPage = () => {
         <title>Video Discovery app</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar username="ogeedev" />
+      <Navbar username="ogeedev@mail.com" />
       <Banner title="Avatar" subtitle="The last air bender" imgURL="/image/avatar.jpg" />
     </div>
   )
