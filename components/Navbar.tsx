@@ -1,6 +1,8 @@
 import {useRouter} from "next/router"
+import Image from "next/image"
 import Link from "next/link"
 import React, {useState} from "react"
+import {MdKeyboardArrowDown} from "react-icons/md"
 
 interface Props {
     // any props that come into the component
@@ -29,7 +31,12 @@ const Navbar: React.FunctionComponent<Props> = ({username}) => {
         <div className="flex px-4 p-5 md:px-16 md:flex-row md:items-center">
             <a className="flex font-medium text-md items-center text-white10 mb-4 md:mb-0" href="/">
                 <div className="text-red w-32">
-                    Netflix
+                    <Image
+                        src="/image/netflix.svg"
+                        alt="Netflix logo"
+                        width="128px"
+                        height="34px"
+                    />
                 </div>
             </a>
 
@@ -44,6 +51,7 @@ const Navbar: React.FunctionComponent<Props> = ({username}) => {
                 <button className="flex items-center overflow-hidden text-white" onClick={handleShowDropdown}>
                     <p className="text-base">{username}</p>
                     {/* Expand more icons */}
+                    <MdKeyboardArrowDown />
                 </button>
                 {showDropdown && (
                     <div className="absolute ml-auto mt-2 py-2 bg-black50 border text-white rounded-lg border-blue shadow">
