@@ -114,3 +114,12 @@
     --tw-gradient-stops: var(--tw-gradient-from),var(--tw-gradient-to, rgba(0, 0, 0, 0));
   --tw-gradient-from: var(--black)
 } */
+
+.imgMotionWrapper{
+    porition:relative;
+    display: inline-block
+}
+
+.imgMotionWrapper:hover{
+    z-index: 99;
+}
