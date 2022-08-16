@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Banner from '../components/Banner'
+import Card from '../components/Card'
 import Navbar from '../components/Navbar'
 
 const Home: NextPage = () => {
@@ -12,6 +13,9 @@ const Home: NextPage = () => {
       </Head>
       <Navbar username="ogeedev@mail.com" />
       <Banner title="Avatar" subtitle="The last air bender" imgURL="/image/avatar.jpg" />
+      <Card imgUrl="/image/avatar.jpg" size="large"/>
+      <Card imgUrl="/image/avatar.jpg" size="medium"/>
+      <Card imgUrl="/image/avatar.jpg" size="small"/>
     </div>
   )
 }
