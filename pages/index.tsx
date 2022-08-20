@@ -15,8 +15,8 @@ const Home: NextPage = () => {
       <Navbar username="ogeedev@mail.com" />
       <Banner title="Avatar" subtitle="The last air bender" imgURL="/image/avatar.jpg" />
       <SectionCards title='Disney'/>
-      <Card imgUrl="/image/avatar.jpg" size="medium"/>
-      <Card imgUrl="/image/avatar.jpg" size="small"/>
+      {/* <Card imgUrl="/image/avatar.jpg" size="medium"/>
+      <Card imgUrl="/image/avatar.jpg" size="small"/> */}
     </div>
   )
 }
