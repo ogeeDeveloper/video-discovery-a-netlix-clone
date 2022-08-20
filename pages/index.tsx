@@ -14,7 +14,9 @@ const Home: NextPage = () => {
       </Head>
       <Navbar username="ogeedev@mail.com" />
       <Banner title="Avatar" subtitle="The last air bender" imgURL="/image/avatar.jpg" />
-      <SectionCards title='Disney'/>
+      <div className='mt-6'>
+        <SectionCards title='Disney'/>
+      </div>
       {/* <Card imgUrl="/image/avatar.jpg" size="medium"/>
       <Card imgUrl="/image/avatar.jpg" size="small"/> */}
     </div>

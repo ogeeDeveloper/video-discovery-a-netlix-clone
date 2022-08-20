@@ -5,10 +5,11 @@ import {motion} from "framer-motion"
 interface Props {
     // any props that come into the component
     imgUrl:string,
-    size:string
+    size:string,
+    id:number
 }
 
-const Card: React.FunctionComponent<Props> = ({imgUrl="/image/image-not-found.png", size="medium"}) => {
+const Card: React.FunctionComponent<Props> = ({imgUrl="/image/image-not-found.png", size="medium", id}) => {
     const [imgSrc, setImgSrc] = useState(imgUrl)
 
     // style map
@@ -22,10 +23,14 @@ const Card: React.FunctionComponent<Props> = ({imgUrl="/image/image-not-found.pn
         console.log("error triggered")
         setImgSrc("/image/image-not-found.png")
     }
+
+    // Checks condition for scaling
+    const scale = id === 0 ? {scaleY:1.1} : {scale:1.1}
+
   return (
     <div className='mr-1  cursor-pointer'>
-        <motion.div className={`${styleMap[size]} imgMotionWrapper`} whileHover={{scale:1.1}}>
-            <Image src={imgUrl} alt='image' layout='fill' className='block top-0 right-0 bottom-0 left-0 rounded-md object-cover object-center max-w-full' onError={handleImageError} />
+        <motion.div className={`${styleMap[size]} imgMotionWrapper`} whileHover={{...scale}}>
+            <Image src={imgUrl} alt='image' layout='fill' className='block top-0 right-0 bottom-0 left-0 rounded-md object-cover object-center max-w-full z-50' onError={handleImageError} />
         </motion.div>
     </div>
   )
