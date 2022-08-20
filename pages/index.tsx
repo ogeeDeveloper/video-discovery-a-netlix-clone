@@ -7,9 +7,9 @@ import SectionCards from '../components/SectionCards'
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center">
       <Head>
-        <title>Video Discovery app</title>
+        <title>Video Discovery:Netflix Clone</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar username="ogeedev@mail.com" />
