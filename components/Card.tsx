@@ -28,9 +28,9 @@ const Card: React.FunctionComponent<Props> = ({imgUrl="/image/image-not-found.pn
     const scale = id === 0 ? {scaleY:1.1} : {scale:1.1}
 
   return (
-    <div className='mr-1  cursor-pointer'>
+    <div className='mr-1 cursor-pointer'>
         <motion.div className={`${styleMap[size]} imgMotionWrapper`} whileHover={{...scale}}>
-            <Image src={imgUrl} alt='image' layout='fill' className='block top-0 right-0 bottom-0 left-0 rounded-md object-cover object-center max-w-full z-50' onError={handleImageError} />
+            <Image src={imgUrl} alt='image' layout='fill' className='block top-0 right-0 bottom-0 left-0 rounded-md object-cover object-center max-w-full' onError={handleImageError} />
         </motion.div>
     </div>
   )

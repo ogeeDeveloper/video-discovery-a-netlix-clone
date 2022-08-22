@@ -116,7 +116,7 @@
 } */
 
 .imgMotionWrapper{
-    porition:relative;
+    position:relative;
     display: inline-block
 }
 
