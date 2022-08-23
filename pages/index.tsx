@@ -6,14 +6,19 @@ import Navbar from '../components/Navbar'
 import SectionCards from '../components/SectionCards'
 import {getVideo} from "../lib/videos"
 
-const Home: NextPage = () => {
+export async function getServerSideProps() {
+    const disneyVideos = getVideo()
+    // Pass the disneyVideos as props to our home page
+    return {props: {disneyVideos}}
+}
+
+const Home: NextPage = ({disneyVideos}:any) => {
   // Dummydata for populating card
 //   const disneyVideos = [
 //     {imgUrl: "/image/avatar.jpg"},
 //     {imgUrl: "/image/avatar.jpg"},
 //     {imgUrl: "/image/avatar.jpg"}
 //   ]
-    const disneyVideos = getVideo()
 
   return (
     <div className="flex min-h-screen flex-col items-center">

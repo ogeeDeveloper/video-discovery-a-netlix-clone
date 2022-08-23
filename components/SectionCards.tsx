@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './Card'
 
-const SectionCards = ({title,size,videos}:{title:string, size:string, videos:{imgUrl:string}[]}) => {
+const SectionCards = ({title,size,videos=[]}:{title:string, size:string, videos:{imgUrl:string}[]}) => {
   console.log({videos})
   return (
     <section className='text-blue20 bg-black50 px-4 md:px-16'>
