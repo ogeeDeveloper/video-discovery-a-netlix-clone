@@ -4,12 +4,12 @@ import Head from 'next/head'
 import Banner from '../components/Banner'
 import Navbar from '../components/Navbar'
 import SectionCards from '../components/SectionCards'
-import {getVideo} from "../lib/videos"
+import {getVideos} from "../lib/videos"
 
 export async function getServerSideProps() {
-    const disneyVideos = await getVideo("disney trailer")
-    const TravelVideos = await getVideo('Travel')
-    const ProducivityVideos = await getVideo('Productivity')
+    const disneyVideos = await getVideos('disney%20trailer')
+    const TravelVideos = await getVideos('Travel')
+    const ProducivityVideos = await getVideos('Productivity')
     // const PopularVideos = await getVideo('disney trailer')
 
    // Pass the disneyVideos as props to our home page
