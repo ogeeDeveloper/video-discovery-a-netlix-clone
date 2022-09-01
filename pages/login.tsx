@@ -2,10 +2,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import React, {useState} from "react"
+import {useRouter} from "next/router"
 
 const login = () => {
     const [userMessage, setUserMessage] = useState('')
     const [email, setEmail] = useState('')
+
+    // Invoke useRouter
+    const router = useRouter()
 
     const handleOnChangeEmail = (event: React.ChangeEvent<HTMLInputElement>)=>{
         setUserMessage('')
@@ -21,11 +25,22 @@ const login = () => {
         event.preventDefault()
         console.log("Handle login button")
 
-        // Check if their is a email address
+        // // Check if their is a email address
+        // if(email){
+        //     // Route to dashboard
+        // }else{
+        //     // Show user message
+        //     setUserMessage("Please enter a valid email address")
+        // }
+
         if(email){
-            // Route to dashboard
+            if(email==="test@mail.com"){
+                console.log("Welcome to the dashboard")
+                router.push("/")
+            }else{
+                setUserMessage("Oh no, something went wrong")
+            }
         }else{
-            // Show user message
             setUserMessage("Please enter a valid email address")
         }
     }
