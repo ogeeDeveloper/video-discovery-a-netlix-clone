@@ -1,17 +1,22 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
+import React from "react"
 
 const login = () => {
+    const handleLogin = (event: React.MouseEvent)=>{
+        event.preventDefault()
+        console.log("Handle login button")
+    }
   return (
-    <div>
+    <div className='flex flex-col items-center justify-start min-h-screen bg-signinbackround'>
         <Head>
         <title>Netflix Signin</title>
       </Head>
 
-      <header>
-        <div className=''>
-            <Link className='flex font-medium text-base items-center color-white10 mb-4' href="/"> 
+      <header className='flex justify-between w-full py-8'>
+        <div className='flex px-4 flex-row'>
+            <Link className='flex font-medium items-center text-white10 mb-4' href="/"> 
                 <a>
                     <div className='color-red w-32'>
                         <Image
@@ -25,6 +30,15 @@ const login = () => {
             </Link>
         </div>
       </header>
+        {/* Container for the contents */}
+        <main className='flex relative justify-center w-full h-screen z-10'>
+            {/* Main wrapper to aplly space and transparent background */}
+            <div className='flex flex-col pb-24 pt-8 bg-black20 h-[33.3333%] px-12 rounded-md min-w-[240px]'>
+                <h1 className='text-white10 font-bold text-4xl mb-8'>Sign In</h1>
+                <input type="email" className="p-2 color-black30 w-full pb-4 h-12 min-w-[240px] text-lg" placeholder="email address" />
+                <button className='bg-red10 px-12 py-2 text-xl color-white10 w-full rounded-md mt-6' onClick={handleLogin}>Login</button>
+            </div>
+        </main>
     </div>
   )
 }

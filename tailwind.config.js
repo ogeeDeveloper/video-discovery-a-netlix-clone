@@ -35,6 +35,9 @@ module.exports = {
         blue: "var(--blue)",
         blue20: "var(--blue20)",
       },
+      backgroundImage: {
+        'signinbackround': "url('/public/image/bg-videos.jpg')",
+      },
     },
   },
   plugins: [],
