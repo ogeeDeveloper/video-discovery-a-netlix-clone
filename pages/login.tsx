@@ -1,12 +1,33 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import React from "react"
+import React, {useState} from "react"
 
 const login = () => {
+    const [userMessage, setUserMessage] = useState('')
+    const [email, setEmail] = useState('')
+
+    const handleOnChangeEmail = (event: React.ChangeEvent<HTMLInputElement>)=>{
+        setUserMessage('')
+        // Check if the email address already exists
+        const email:string = event.target.value
+        console.log(email)
+
+        // As the users starts typing then setthe emmail in state 
+        setEmail(email)
+    }
+
     const handleLogin = (event: React.MouseEvent)=>{
         event.preventDefault()
         console.log("Handle login button")
+
+        // Check if their is a email address
+        if(email){
+            // Route to dashboard
+        }else{
+            // Show user message
+            setUserMessage("Please enter a valid email address")
+        }
     }
   return (
     <div className='flex flex-col items-center justify-start min-h-screen bg-signinbackround'>
@@ -35,7 +56,8 @@ const login = () => {
             {/* Main wrapper to aplly space and transparent background */}
             <div className='flex flex-col pb-24 pt-8 bg-black20 h-[33.3333%] px-12 rounded-md min-w-[240px]'>
                 <h1 className='text-white10 font-bold text-4xl mb-8'>Sign In</h1>
-                <input type="email" className="p-2 color-black30 w-full pb-4 h-12 min-w-[240px] text-lg" placeholder="email address" />
+                <input type="email" className="p-2 color-black30 w-full pb-4 h-12 min-w-[240px] text-lg" placeholder="email address" onChange={handleOnChangeEmail} />
+                <p className="">{userMessage}</p>
                 <button className='bg-red10 px-12 py-2 text-xl color-white10 w-full rounded-md mt-6' onClick={handleLogin}>Login</button>
             </div>
         </main>
