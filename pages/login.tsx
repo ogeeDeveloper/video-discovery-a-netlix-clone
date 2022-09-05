@@ -47,25 +47,25 @@ const login = () => {
   return (
     <div className='flex flex-col items-center justify-start min-h-screen bg-signinbackround'>
         <Head>
-        <title>Netflix Signin</title>
-      </Head>
+            <title>Netflix Signin</title>
+        </Head>
 
-      <header className='flex justify-between w-full py-8'>
-        <div className='flex px-4 flex-row'>
-            <Link className='flex font-medium items-center text-white10 mb-4' href="/"> 
-                <a>
-                    <div className='color-red w-32'>
-                        <Image
-                            src="/image/netflix.svg"
-                            alt="Netflix logo"
-                            width="128px"
-                            height="34px"
-                        />
-                    </div>
-                </a>
-            </Link>
-        </div>
-      </header>
+        <header className='flex justify-between w-full py-8'>
+            <div className='flex px-4 flex-row'>
+                <Link className='flex font-medium items-center text-white10 mb-4' href="/"> 
+                    <a>
+                        <div className='color-red w-32'>
+                            <Image
+                                src="/image/netflix.svg"
+                                alt="Netflix logo"
+                                width="128px"
+                                height="34px"
+                            />
+                        </div>
+                    </a>
+                </Link>
+            </div>
+        </header>
         {/* Container for the contents */}
         <main className='flex relative justify-center w-full h-screen z-10'>
             {/* Main wrapper to aplly space and transparent background */}
