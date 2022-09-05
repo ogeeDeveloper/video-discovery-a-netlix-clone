@@ -8,6 +8,7 @@ import { magic } from '../lib/magic-client'
 const login = () => {
     const [userMessage, setUserMessage] = useState('')
     const [email, setEmail] = useState('')
+    const [isLoading, setIsLoading] = useState(false) 
 
     // Invoke useRouter
     const router = useRouter()
@@ -16,7 +17,7 @@ const login = () => {
         setUserMessage('')
         // Check if the email address already exists
         const email:string = event.target.value
-        console.log(email)
+        // console.log(email)
 
         // As the users starts typing then setthe emmail in state 
         setEmail(email)
@@ -24,21 +25,25 @@ const login = () => {
 
     const handleLogin = async (event: React.MouseEvent)=>{
         event.preventDefault()
-        console.log("Handle login button")
+        // console.log("Handle login button")
 
         if(email){
             // log in a user by their email
             try {
+                setIsLoading(true)
                 const didToken = await magic.auth.loginWithMagicLink({ email });
-                console.log({didToken})
+                // console.log({didToken})
                 if(didToken){
+                    setIsLoading(false)
                     router.push("/")
                 }
             } catch(error) {
                 // Handle errors if required!
                 console.error("Something wenst wrong while logging in", error)
+                setIsLoading(false)
             }
         }else{
+            setIsLoading(false)
             setUserMessage("Please enter a valid email address")
         }
     }
@@ -71,7 +76,7 @@ const login = () => {
                 <h1 className='text-white10 font-bold text-4xl mb-8'>Sign In</h1>
                 <input type="email" className="p-2 color-black30 w-full pb-4 h-12 min-w-[240px] text-lg" placeholder="email address" onChange={handleOnChangeEmail} />
                 <p className="">{userMessage}</p>
-                <button className='bg-red10 px-12 py-2 text-xl color-white10 w-full rounded-md mt-6' onClick={handleLogin}>Login</button>
+                <button className='bg-red10 px-12 py-2 text-xl color-white10 w-full rounded-md mt-6' onClick={handleLogin}>{isLoading ? "Loading..." : "Login"}</button>
             </div>
         </main>
     </div>
