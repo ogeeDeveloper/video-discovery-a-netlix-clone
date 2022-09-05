@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import React, {useState} from "react"
 import {useRouter} from "next/router"
+import { magic } from '../lib/magic-client'
 
 const login = () => {
     const [userMessage, setUserMessage] = useState('')
@@ -21,22 +22,20 @@ const login = () => {
         setEmail(email)
     }
 
-    const handleLogin = (event: React.MouseEvent)=>{
+    const handleLogin = async (event: React.MouseEvent)=>{
         event.preventDefault()
         console.log("Handle login button")
 
-        // // Check if their is a email address
-        // if(email){
-        //     // Route to dashboard
-        // }else{
-        //     // Show user message
-        //     setUserMessage("Please enter a valid email address")
-        // }
-
         if(email){
             if(email==="test@mail.com"){
-                console.log("Welcome to the dashboard")
-                router.push("/")
+                // log in a user by their email
+                try {
+                    const didToken = await magic.auth.loginWithMagicLink({ email });
+                    console.log({didToken})
+                } catch(error) {
+                    // Handle errors if required!
+                    console.error("Something wenst wrong while logging in", error)
+                }
             }else{
                 setUserMessage("Oh no, something went wrong")
             }

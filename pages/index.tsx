@@ -5,7 +5,6 @@ import Banner from '../components/Banner'
 import Navbar from '../components/Navbar'
 import SectionCards from '../components/SectionCards'
 import {getVideos,getPopularVideos} from "../lib/videos"
-import { magic } from '../lib/magic-client'
 
 export async function getServerSideProps() {
     const disneyVideos = await getVideos('disney%20trailer')
@@ -18,7 +17,6 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = ({disneyVideos,TravelVideos, ProducivityVideos,PopularVideos}:any) => {
-  console.log({magic})
   return (
     <div className="flex min-h-screen flex-col">
       <Head>
