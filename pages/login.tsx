@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import {useRouter} from "next/router"
 import { magic } from '../lib/magic-client'
 
@@ -12,6 +12,21 @@ const login = () => {
 
     // Invoke useRouter
     const router = useRouter()
+
+    // The minute the router change then the useEffect will be triggered
+    useEffect(() => {
+        // set isLoading to false in the last step
+        const handleComplete = () => {
+            setIsLoading(false)
+        }
+      router.events.on('routeChangeComplete', handleComplete)
+    
+      return () => {
+        //Stop events from happening if complete
+        router.events.off('routeChangeComplete', handleComplete)
+      }
+    }, [router])
+    
 
     const handleOnChangeEmail = (event: React.ChangeEvent<HTMLInputElement>)=>{
         setUserMessage('')
@@ -34,7 +49,6 @@ const login = () => {
                 const didToken = await magic.auth.loginWithMagicLink({ email });
                 // console.log({didToken})
                 if(didToken){
-                    setIsLoading(false)
                     router.push("/")
                 }
             } catch(error) {
