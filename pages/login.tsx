@@ -27,17 +27,16 @@ const login = () => {
         console.log("Handle login button")
 
         if(email){
-            if(email==="test@mail.com"){
-                // log in a user by their email
-                try {
-                    const didToken = await magic.auth.loginWithMagicLink({ email });
-                    console.log({didToken})
-                } catch(error) {
-                    // Handle errors if required!
-                    console.error("Something wenst wrong while logging in", error)
+            // log in a user by their email
+            try {
+                const didToken = await magic.auth.loginWithMagicLink({ email });
+                console.log({didToken})
+                if(didToken){
+                    router.push("/")
                 }
-            }else{
-                setUserMessage("Oh no, something went wrong")
+            } catch(error) {
+                // Handle errors if required!
+                console.error("Something wenst wrong while logging in", error)
             }
         }else{
             setUserMessage("Please enter a valid email address")
