@@ -20,10 +20,12 @@ const login = () => {
             setIsLoading(false)
         }
       router.events.on('routeChangeComplete', handleComplete)
+      router.events.on('routeChangeError', handleComplete)
     
       return () => {
         //Stop events from happening if complete
         router.events.off('routeChangeComplete', handleComplete)
+        router.events.off('routeChangeError', handleComplete)
       }
     }, [router])
     

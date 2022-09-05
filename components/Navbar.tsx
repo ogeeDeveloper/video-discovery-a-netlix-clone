@@ -1,17 +1,40 @@
 import {useRouter} from "next/router"
 import Image from "next/image"
 import Link from "next/link"
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import {MdKeyboardArrowDown} from "react-icons/md"
+
+import {magic} from "../lib/magic-client"
 
 interface Props {
     // any props that come into the component
     username:string,
 }
 
-const Navbar: React.FunctionComponent<Props> = ({username}) => {
+
+const Navbar: React.FunctionComponent<Props> = () => {
     const router=useRouter()
     const [showDropdown, setShowDropdown] = useState(false)
+    const [username, setUsername] = useState("")
+
+    useEffect(() => {
+        async function getUsername(){
+            // Assumes a user is already logged in
+            try {
+                /* Destructure to get username */
+                const {email} = await magic.user.getMetadata()
+                if(email){
+                    setUsername(email)
+                }
+
+            } catch(error) {
+                // Handle errors if required!
+                console.error("There was an error retrieving the username", error)
+            }
+        }
+        getUsername()
+    }, [])
+
 
     const handleOnClickHome = (e:React.SyntheticEvent) => {
         e.preventDefault()
