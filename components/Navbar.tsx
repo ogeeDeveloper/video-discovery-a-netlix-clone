@@ -49,6 +49,20 @@ const Navbar: React.FunctionComponent<Props> = () => {
     const handleShowDropdown = () => {
         setShowDropdown(!showDropdown)
     }
+
+    const handleOnSignout = async(event: { preventDefault: () => void })=>{
+        event.preventDefault()
+
+        try {
+        await magic.user.logout();
+        console.log(await magic.user.isLoggedIn()); // => `false`
+        router.push("/login")
+        } catch(err) {
+        // Handle errors if required!
+        console.log('An error occured while logging out, please try again later', err.message)
+        router.push("/login")
+        }
+    }
   return (
     <div className="text-white10 fixed top-0 w-full z-50">
         <div className="flex px-4 p-5 md:px-16 md:flex-row md:items-center">
@@ -80,7 +94,7 @@ const Navbar: React.FunctionComponent<Props> = () => {
                     <div className="absolute ml-auto mt-2 py-2 bg-black50 border text-white rounded-lg border-blue shadow">
                         <div>
                             <Link href="/login">
-                                <a className="transition duration-200 block px-1 rounded-sm cursor-pointer hover:no-underline">Sign Out</a>
+                                <a className="transition duration-200 block px-1 rounded-sm cursor-pointer hover:no-underline" onClick={handleOnSignout}>Sign Out</a>
                             </Link>
                             <div className="py-2"></div>
                         </div>
