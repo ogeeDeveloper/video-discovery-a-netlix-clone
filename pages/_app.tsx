@@ -8,23 +8,23 @@ import Loading from '../components/loading/Loading';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(true)
-  useEffect(() => {
-    // Function to check respectully if user is logged i or not and route that user to login or home route
-    const checkUserLoggedIn = async () => {
-      try {
-        const isLoggedIn = await magic.user.isLoggedIn();
-        if (isLoggedIn) {
-          router.push("/");
-        } else {
-          router.push("/login");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    checkUserLoggedIn();
-  }, []);
+  const [isLoading, setIsLoading] = useState(false)
+  // useEffect(() => {
+  //   // Function to check respectully if user is logged i or not and route that user to login or home route
+  //   const checkUserLoggedIn = async () => {
+  //     try {
+  //       const isLoggedIn = await magic.user.isLoggedIn();
+  //       if (isLoggedIn) {
+  //         router.push("/");
+  //       } else {
+  //         router.push("/login");
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   checkUserLoggedIn();
+  // }, []);
 
   // The minute the router change then the useEffect will be triggered
   useEffect(() => {

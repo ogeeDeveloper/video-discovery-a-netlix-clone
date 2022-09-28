@@ -1,18 +1,22 @@
 import Image from "next/image"
+import { useRouter } from "next/router";
 import { MdPlayArrow } from "react-icons/md";
 
 interface Props {
     // any props that come into the component
     title:string,
     subtitle:string,
-    imgURL:string
+    imgURL:string,
+    videoId:string
 }
 
 const Banner: React.FunctionComponent<Props> = (props) => {
-    const {title, subtitle, imgURL} = props
+    const {title, subtitle, imgURL, videoId} = props
+    const router = useRouter()
 
     const handleOnPlay = ()=>{
         console.log("You clicked the play button")
+        router.push(`video/${videoId}`)
     }
 
   return (
