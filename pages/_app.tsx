@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { magic } from '../lib/magic-client';
 import { useEffect, useState } from 'react';
 
+import Loading from '../components/loading/Loading';
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
@@ -40,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [router])
 
-  return isLoading ? <div>Loading...</div> : <Component {...pageProps} />
+  return isLoading ? <Loading /> : <Component {...pageProps} />
 }
 
 export default MyApp
