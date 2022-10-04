@@ -38,6 +38,9 @@ module.exports = {
       backgroundImage: {
         'signinbackround': "url('/public/image/bg-videos.jpg')",
       },
+      width: {
+        '800': '50rem'
+      },
     },
   },
   plugins: [],

@@ -26,7 +26,7 @@ const Home: NextPage = ({disneyVideos,TravelVideos, ProducivityVideos,PopularVid
 
       {/* Wrapper */}
       <div className="pb-16">
-        <Navbar />
+        <Navbar username={''} />
         <Banner title="Shrek 5" subtitle="The last air bender" imgURL="/image/Shrek-5.jpg" videoId="e5jiwjvlCUA" />
         <div className='mt-6'>
           <SectionCards title='Disney' videos={disneyVideos} size="large" />
