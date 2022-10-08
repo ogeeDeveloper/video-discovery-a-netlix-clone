@@ -1,46 +1,85 @@
+import React from 'react';
 import {useRouter} from 'next/router'
 import Modal from 'react-modal'
 
 Modal.setAppElement('#__next')
 
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
+// define video interface
+interface Video {
+  title: string,
+  publishTime: string,
+  description: string,
+  channelTitle: string,
+  viewCount: number,
+}
 
-const Video = () => {
+export async function getStaticProps() {
+  // Data to be fetched from API
+  // Create structure for modal
+  const videoModal:Video = {
+    title: 'Video',
+    publishTime: '2021-01-01',
+    description: 'This is a video of a very long text forem',
+    channelTitle: 'Channel',
+    viewCount: 100,
+  }
+
+  // if (!res.ok) {
+  //   // If there is a server error, you might want to
+  //   // throw an error instead of returning so that the cache is not updated
+  //   // until the next successful request.
+  //   throw new Error(`Failed to fetch posts, received status ${res.status}`)
+  // }
+
+  // If the request was successful, return the posts
+  // and revalidate every 10 seconds.
+  return {
+    props: {
+      videoModal,
+    },
+    revalidate: 10,
+  }
+}
+
+export async function getStaticPaths() {
+  // Videos that will load by ISR
+  // Wakanda _Z3QKkl1WyM, Little Mermaid 0-wPm99PF9U, Encanto CaimKeDcudo
+  const listOfVideos = ["_Z3QKkl1WyM", "0-wPm99PF9U", "CaimKeDcudo"]
+  const paths = listOfVideos.map((videoId) => ({
+    params: { videoId },
+  }))
+
+  return { paths, fallback: "blocking" }
+}
+
+// const customStyles = {
+//     content: {
+//       top: '50%',
+//       left: '50%',
+//       right: 'auto',
+//       bottom: 'auto',
+//       marginRight: '-50%',
+//       transform: 'translate(-50%, -50%)',
+//     },
+//   };
+
+  interface videoProp {
+    title: string,
+    publishTime: string,
+    description: string,
+    channelTitle: string,
+    viewCount: number,
+  }
+
+const Video: React.FC<videoProp> = (props) => {
     const router = useRouter()
     const videoId = router.query.videoId
+
+    const {title, publishTime, description, channelTitle, viewCount}= props
 
     const handleRequestCloseFunc = () => {
         router.back()
     }
-
-    // define video interface
-    interface Video {
-      title: string,
-      publishTime: string,
-      description: string,
-      channelTitle: string,
-      viewCount: number,
-    }
-
-    // Create structure for modal
-    const videoModal:Video = {
-      title: 'Video',
-      publishTime: '2021-01-01',
-      description: 'This is a video of a very long text forem',
-      channelTitle: 'Channel',
-      viewCount: 100,
-    }
-
-    const {title, publishTime, description, channelTitle, viewCount}= videoModal
     
   return (
     <div>
