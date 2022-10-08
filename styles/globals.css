@@ -135,3 +135,18 @@
   opacity: 1;
   background: linear-gradient(to top, var(--black10), transparent 50%);
 }
+
+.subText {
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+  margin-left: 0px;
+  overflow-wrap: break-word;
+}
+
+.subTextWrapper {
+  margin-top: 1.5rem /* 24px */;
+}
+
+.infoText {
+  color: var(--gray10);
+}

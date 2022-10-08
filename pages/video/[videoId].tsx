@@ -35,7 +35,7 @@ const Video = () => {
     const videoModal:Video = {
       title: 'Video',
       publishTime: '2021-01-01',
-      description: 'This is a video',
+      description: 'This is a video of a very long text forem',
       channelTitle: 'Channel',
       viewCount: 100,
     }
@@ -49,7 +49,7 @@ const Video = () => {
             contentLabel="Video player"
             onRequestClose={handleRequestCloseFunc}
             overlayClassName={"top-0 left-0 right-0 bottom-0 w-full h-screen"}
-            className={"absolute left-0 right-0 mx-auto my-0 w-800 bottom-[40px] bg-black40 top-[10%] outline-none rounded-[10px] border-2 border-solid border-shadow-2xl"}
+            className={"absolute left-0 right-0 mx-auto my-0 w-800 bottom-[40px] bg-black40 top-[5%] outline-none rounded-[10px] border-2 border-solid border-shadow-2xl"}
         >
           <iframe id="player" type="text/html" width="100%" height="390"
               src={`http://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=http://localhost:3000&controls=0&showinfo=0&rel=0&autoplay=1`}
@@ -57,20 +57,20 @@ const Video = () => {
             </iframe>
 
           {/* Modal Body */}
-          <div>
+          <div className='py-0 px-[48px]'>
             {/* Modal body content */}
-            <div>
+            <div className='grid grid-cols-2 gap-y-8'>
               {/* Column 1 */}
-              <div>
+              <div className='max-h-96 overflow-y-hidden'>
                 {/* Published Time */}
-                <p>{publishTime}</p>
+                <p className='text-xl mt-6 mb-2 text-green10'>{publishTime}</p>
                 {/* Title */}
-                <p>{title}</p>
+                <p className='text-xl text-white10'>{title}</p>
                 {/* Description */}
-                <p>{description}</p>
+                <p className='mb-2 mt-3'>{description}</p>
               </div>
               {/* Column 2 */}
-              <div>
+              <div className='flex flex-col text-white leading-7'>
                 <p className='subText subTextWrapper'>
                   <span className='infoText'>Cast: </span>
                   <span>{channelTitle}</span>
