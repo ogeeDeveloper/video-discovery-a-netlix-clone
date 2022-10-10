@@ -1,28 +1,32 @@
 import React from 'react';
 import {useRouter} from 'next/router'
 import Modal from 'react-modal'
+import { getVideoById } from '../../lib/videos';
 
 Modal.setAppElement('#__next')
 
 // define video interface
-interface Video {
-  title: string,
-  publishTime: string,
-  description: string,
-  channelTitle: string,
-  viewCount: number,
-}
+// interface Video {
+//   title: string,
+//   publishTime: string,
+//   description: string,
+//   channelTitle: string,
+//   viewCount: number,
+// }
 
 export async function getStaticProps() {
   // Data to be fetched from API
   // Create structure for modal
-  const videoModal:Video = {
-    title: 'Video',
-    publishTime: '2021-01-01',
-    description: 'This is a video of a very long text forem',
-    channelTitle: 'Channel',
-    viewCount: 100,
-  }
+  // const videoModal:Video = {
+  //   title: 'Video',
+  //   publishTime: '2021-01-01',
+  //   description: 'This is a video of a very long text forem',
+  //   channelTitle: 'Channel',
+  //   viewCount: 1004,
+  // }
+  const videoId = '-wPm99PF9U'
+  const videoArray:any = await getVideoById(videoId)
+  console.log({videoArray})
 
   // if (!res.ok) {
   //   // If there is a server error, you might want to
@@ -35,7 +39,7 @@ export async function getStaticProps() {
   // and revalidate every 10 seconds.
   return {
     props: {
-      videoModal,
+      videoModal: videoArray > 0 ? videoArray[0] : null,
     },
     revalidate: 10,
   }
@@ -71,11 +75,18 @@ export async function getStaticPaths() {
     viewCount: number,
   }
 
-const Video: React.FC<videoProp> = (props) => {
+const Video= ({videoModal}:any) => {
     const router = useRouter()
-    const videoId = router.query.videoId
-
-    const {title, publishTime, description, channelTitle, viewCount}= props
+    // const videoId = router.query.videoId
+    console.log(videoModal)
+    // const {title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 }}= props.videoModal
+    const {
+      title,
+      publishTime,
+      description,
+      channelTitle,
+      statistics: { viewCount } = { viewCount: 0 },
+    } = videoModal;
 
     const handleRequestCloseFunc = () => {
         router.back()
