@@ -1,7 +1,10 @@
 import React from 'react';
 import {useRouter} from 'next/router'
 import Modal from 'react-modal'
+import { GetStaticProps, GetStaticPaths } from 'next'
+
 import { getVideoById } from '../../lib/videos';
+import Navbar from '../../components/Navbar';
 
 Modal.setAppElement('#__next')
 
@@ -14,7 +17,7 @@ Modal.setAppElement('#__next')
 //   viewCount: number,
 // }
 
-export async function getStaticProps(context) {
+export const getStaticProps = async(context)=> {
   // Data to be fetched from API
   // Create structure for modal
   // const videoModal:Video = {
@@ -26,7 +29,7 @@ export async function getStaticProps(context) {
   // }
   const videoId = context.params.videoId
   const videoArray:any = await getVideoById(videoId)
-  console.log({videoArray})
+  // console.log({videoArray})
 
   // if (!res.ok) {
   //   // If there is a server error, you might want to
@@ -79,7 +82,7 @@ const Video= ({videoModal}:any) => {
     const router = useRouter()
     const { videoId } = router.query
     // const videoId = router.query.videoId
-    console.log(videoModal)
+    // console.log(videoModal)
     // const {title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 }}= props.videoModal
     const {
       title,
@@ -95,12 +98,13 @@ const Video= ({videoModal}:any) => {
     
   return (
     <div>
+      <Navbar username/>
         <Modal
             isOpen={true}
             contentLabel="Video player"
             onRequestClose={handleRequestCloseFunc}
             overlayClassName={"top-0 left-0 right-0 bottom-0 w-full h-screen"}
-            className={"absolute left-0 right-0 mx-auto my-0 w-800 bottom-[40px] bg-black40 top-[5%] outline-none rounded-[10px] border-2 border-solid border-shadow-2xl"}
+            className={"absolute left-0 right-0 mx-auto my-0 w-800 bottom-[40px] bg-black40 top-[10%] outline-none rounded-[10px] border-2 border-solid border-shadow-2xl lg:w-2/4 lg:top-[10%] lg:bottom-[4px]"}
         >
           <iframe id="player" type="text/html" width="100%" height="390"
               src={`http://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=http://localhost:3000&controls=0&showinfo=0&rel=0&autoplay=1`}
@@ -112,7 +116,7 @@ const Video= ({videoModal}:any) => {
             {/* Modal body content */}
             <div className='grid grid-cols-2 gap-y-8'>
               {/* Column 1 */}
-              <div className='max-h-96 overflow-y-scroll overflow-y-hidden'>
+              <div className='max-h-[50rem] overflow-y-scroll overflow-y-hidden'>
                 {/* Published Time */}
                 <p className='text-xl mt-6 mb-2 text-green10'>{publishTime}</p>
                 {/* Title */}
