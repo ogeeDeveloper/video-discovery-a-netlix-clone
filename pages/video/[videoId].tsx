@@ -14,7 +14,7 @@ Modal.setAppElement('#__next')
 //   viewCount: number,
 // }
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   // Data to be fetched from API
   // Create structure for modal
   // const videoModal:Video = {
@@ -24,7 +24,7 @@ export async function getStaticProps() {
   //   channelTitle: 'Channel',
   //   viewCount: 1004,
   // }
-  const videoId = 'e5jiwjvlCUA'
+  const videoId = context.params.videoId
   const videoArray:any = await getVideoById(videoId)
   console.log({videoArray})
 
