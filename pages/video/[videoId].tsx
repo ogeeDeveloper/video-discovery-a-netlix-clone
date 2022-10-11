@@ -24,7 +24,7 @@ export async function getStaticProps() {
   //   channelTitle: 'Channel',
   //   viewCount: 1004,
   // }
-  const videoId = '-wPm99PF9U'
+  const videoId = 'e5jiwjvlCUA'
   const videoArray:any = await getVideoById(videoId)
   console.log({videoArray})
 
@@ -39,7 +39,7 @@ export async function getStaticProps() {
   // and revalidate every 10 seconds.
   return {
     props: {
-      videoModal: videoArray > 0 ? videoArray[0] : null,
+      videoModal: videoArray.length > 0 ? videoArray[0] : null,
     },
     revalidate: 10,
   }
@@ -77,6 +77,7 @@ export async function getStaticPaths() {
 
 const Video= ({videoModal}:any) => {
     const router = useRouter()
+    const { videoId } = router.query
     // const videoId = router.query.videoId
     console.log(videoModal)
     // const {title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 }}= props.videoModal
@@ -111,7 +112,7 @@ const Video= ({videoModal}:any) => {
             {/* Modal body content */}
             <div className='grid grid-cols-2 gap-y-8'>
               {/* Column 1 */}
-              <div className='max-h-96 overflow-y-hidden'>
+              <div className='max-h-96 overflow-y-scroll overflow-y-hidden'>
                 {/* Published Time */}
                 <p className='text-xl mt-6 mb-2 text-green10'>{publishTime}</p>
                 {/* Title */}
