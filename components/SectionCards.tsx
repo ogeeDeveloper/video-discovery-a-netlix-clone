@@ -9,7 +9,9 @@ const SectionCards = ({title,size,videos=[]}:{title:string, size:string, videos:
         <h1 className='text-white10 font-bold text-2xl'>{title}</h1>
         <div className='flex pt-7 pb-6 mt-6 mr-3 overflow-x-scroll overflow-y-hidden'>
           {videos && videos.map((video,index)=>{
-            return <Link href={`video/${video.id}`}><Card key={index} imgUrl={video.imgUrl} size={size} id={index} /></Link>
+            return <Link href={`video/${video.id}`}>
+              <a><Card key={index} imgUrl={video.imgUrl} size={size} id={index} /></a>
+              </Link>
           })}
         </div>
     </section>
