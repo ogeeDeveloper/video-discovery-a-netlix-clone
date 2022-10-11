@@ -1,16 +1,26 @@
-export const getCommonVideos = async (url: string) => {
+import * as videoTestData from "../data/test-data.json";
+
+const fetchVideos = async (url: string) => {
   const YOUTUBE_API_KEY = process.env.YOUTUBE_API;
 
+  // Define the base url
+  const BASE_URL = "youtube.googleapis.com/youtube/v3";
+
+  // create fetch request that will return a promise
+  const response = await fetch(
+    `https://${BASE_URL}/${url}&maxResults=25&key=${YOUTUBE_API_KEY}`
+  );
+
+  return await response.json();
+};
+
+export const getCommonVideos = async (url: string) => {
+  // Store the response if we are in development mode or not
+  // const isDev = process.env.NODE_ENV === "development";
+  const isDev = process.env.DEVELOPMENT;
+
   try {
-    // Define the base url
-    const BASE_URL = "youtube.googleapis.com/youtube/v3";
-
-    // create fetch request that will return a promise
-    const response = await fetch(
-      `https://${BASE_URL}/${url}&maxResults=25&key=${YOUTUBE_API_KEY}`
-    );
-
-    const data = await response.json();
+    const data = isDev ? videoTestData : await fetchVideos(url);
 
     // Check if their are any error with the YoutubeAPI
     if (data?.error) {
